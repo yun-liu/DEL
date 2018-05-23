@@ -26,6 +26,10 @@ If you are using the code/model/data provided here in a publication, please cons
     
 ### Pretrained models
 
-DEL model for BSDS500 dataset is available [here](http://mftp.mmcheng.net/liuyun/del/model/).
+DEL models for BSDS500 dataset is available: [CPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehA30g1rtRGwMBCBe) and [GPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehA9KBDV6fXV3BHpw).
 
-DEL model for PASCAL Context dataset is available [here](http://mftp.mmcheng.net/liuyun/del/model/).
+DEL models for PASCAL Context dataset is available: [CPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehA5NT2sESAsOxMjV) and [GPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehBANSy4I7HeEmTc1).
+
+The initialization model pretrained on SBD dataset is available [here](https://1drv.ms/u/s!AtAJxn0z15QehBHWphkXlazDzmG_).
+
+The test data for BSDS500 and PASCAL Context datasets is available [here](https://1drv.ms/u/s!AtAJxn0z15QehBJ0UQsNgAEORlsT).
