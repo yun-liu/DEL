@@ -1,0 +1,17 @@
+net: "train.prototxt"
+# lr for fine-tuning should be lower than when starting from scratch
+base_lr: 1e-5
+lr_policy: "step"
+gamma: 0.1
+iter_size: 5
+# stepsize should also be lower, as we're closer to being done
+stepsize: 8000
+display: 20
+average_loss: 50
+max_iter: 100000
+momentum: 0.9
+weight_decay: 0.0002
+snapshot: 2000
+snapshot_prefix: "snapshots/image_segment_bsds_gpu"
+# uncomment the following to default to CPU mode solving
+# solver_mode: CPU
