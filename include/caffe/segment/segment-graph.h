@@ -22,7 +22,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 #include <algorithm>
 #include <cstdlib>
 #include <math.h>
-#include "image.h"
 #include "disjoint-set.h"
 #include "caffe/blob.hpp"
 
@@ -78,49 +77,6 @@ rgb random_rgb(){
   }
 
   return u;
-}
-
-template <typename Dtype>
-universe *segment_graph_egb(int num_vertices, int num_edges, Dtype *edges,
-     Dtype threshold) {
- edge *edge_list = new edge[num_edges];
- int idx = 0;
- for (int i = 0; i < num_edges; i++) {
-   edge_list[i].a = edges[idx++];
-   edge_list[i].b = edges[idx++];
-   edge_list[i].w = edges[idx++];
- }
-
- // sort edges by weight
- std::sort(edge_list, edge_list + num_edges);
-
- // make a disjoint-set forest
- universe *u = new universe(num_vertices);
-
- // init thresholds
- float *thresh = new float[num_vertices];
- for (int i = 0; i < num_vertices; i++)
-   thresh[i] = THRESHOLD(1, threshold);
-
- // for each edge, in non-decreasing weight order...
- for (int i = 0; i < num_edges; i++) {
-   edge *pedge = &edge_list[i];
-
-   // components conected by this edge
-   int a = u->find(pedge->a);
-   int b = u->find(pedge->b);
-   if (a != b) {
-     if ((pedge->w <= thresh[a]) &&
-       (pedge->w <= thresh[b])) {
-       u->join(a, b);
-       a = u->find(a);
-       thresh[a] = pedge->w + THRESHOLD(u->size(a), threshold);
-     }
-   }
- }
-
- delete thresh;
- return u;
 }
 
 #endif
