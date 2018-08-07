@@ -96,40 +96,32 @@ layer { name: "conv5_3" type: "Convolution" bottom: "conv5_2" top: "conv5_3"
 layer { name: "relu5_3" type: "ReLU" bottom: "conv5_3" top: "conv5_3" }
 
 #######conv1 side output#######
-
 layer { name: "conv1_2_down" type: "Convolution" bottom: "conv1_2" top: "conv1_2_down"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 32 kernel_size: 3  pad: 1
+  convolution_param { num_output: 32 kernel_size: 3  pad: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "relu1_2_down" type: "ReLU" bottom: "conv1_2_down" top: "conv1_2_down" }
-
 layer { name: "conv1_2_refeat" type: "Convolution" bottom: "conv1_2_down" top: "conv1_2_refeat"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 32 kernel_size: 1
+  convolution_param { num_output: 32 kernel_size: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "conv1_2_norm" type: "Normalize" bottom: "conv1_2_refeat"  top: "conv1_2_norm"
   norm_param { across_spatial: false scale_filler { type: "constant" value: 20 }
-  channel_shared: false }}
+  channel_shared: false } }
 
 #######conv2 side output#######
-
 layer { name: "conv2_2_down" type: "Convolution" bottom: "conv2_2" top: "conv2_2_down"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 64 kernel_size: 3  pad: 1
+  convolution_param { num_output: 64 kernel_size: 3  pad: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
 layer { name: "relu2_2_down" type: "ReLU" bottom: "conv2_2_down" top: "conv2_2_down" }
-
 layer { name: "conv2_2_refeat" type: "Convolution" bottom: "conv2_2_down" top: "conv2_2_refeat"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 64 kernel_size: 1
+  convolution_param { num_output: 64 kernel_size: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "conv2_2_norm" type: "Normalize" bottom: "conv2_2_refeat"  top: "conv2_2_norm"
   norm_param { across_spatial: false scale_filler { type: "constant" value: 20 }
-  channel_shared: false }}
-
+  channel_shared: false } }
 layer { name: "upsample2_2" type: "Deconvolution" bottom: "conv2_2_norm" top: "upfeat2_2"
   param { lr_mult: 0 decay_mult: 1 } param { lr_mult: 0 decay_mult: 0 }
   convolution_param { num_output: 64 kernel_size: 4 stride: 2 } }
@@ -137,22 +129,18 @@ layer { name: "crop2_2" type: "Crop" bottom: "upfeat2_2" bottom: "data"
   top: "feature_dsn2" crop_param { axis: 2 offset: 1 } }
 
 #######conv3 side output#######
-
 layer { name: "conv3_3_down" type: "Convolution" bottom: "conv3_3" top: "conv3_3_down"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 128 kernel_size: 3  pad: 1
+  convolution_param { num_output: 128 kernel_size: 3  pad: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
 layer { name: "relu3_3_down" type: "ReLU" bottom: "conv3_3_down" top: "conv3_3_down" }
-
 layer { name: "conv3_3_refeat" type: "Convolution" bottom: "conv3_3_down" top: "conv3_3_refeat"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 64 kernel_size: 1
+  convolution_param { num_output: 64 kernel_size: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "conv3_3_norm" type: "Normalize" bottom: "conv3_3_refeat"  top: "conv3_3_norm"
   norm_param { across_spatial: false scale_filler { type: "constant" value: 20 }
-  channel_shared: false }}
-
+  channel_shared: false } }
 layer { name: "upsample3_3" type: "Deconvolution" bottom: "conv3_3_norm" top: "upfeat3_3"
   param { lr_mult: 0 decay_mult: 1 } param { lr_mult: 0 decay_mult: 0 }
   convolution_param { num_output: 64 kernel_size: 8 stride: 4 } }
@@ -160,22 +148,18 @@ layer { name: "crop3_3" type: "Crop" bottom: "upfeat3_3" bottom: "data"
   top: "feature_dsn3" crop_param { axis: 2 offset: 2 } }
 
 #######conv4 side output#######
-
 layer { name: "conv4_3_down" type: "Convolution" bottom: "conv4_3" top: "conv4_3_down"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 256 kernel_size: 3  pad: 1
+  convolution_param { num_output: 256 kernel_size: 3  pad: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
 layer { name: "relu4_3_down" type: "ReLU" bottom: "conv4_3_down" top: "conv4_3_down" }
-
 layer { name: "conv4_3_refeat" type: "Convolution" bottom: "conv4_3_down" top: "conv4_3_refeat"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 128 kernel_size: 1
+  convolution_param { num_output: 128 kernel_size: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "conv4_3_norm" type: "Normalize" bottom: "conv4_3_refeat"  top: "conv4_3_norm"
   norm_param { across_spatial: false scale_filler { type: "constant" value: 20 }
-  channel_shared: false }}
-
+  channel_shared: false } }
 layer { name: "upsample4_3" type: "Deconvolution" bottom: "conv4_3_norm" top: "upfeat4_3"
   param { lr_mult: 0 decay_mult: 1 } param { lr_mult: 0 decay_mult: 0 }
   convolution_param { num_output: 128 kernel_size: 16 stride: 8 } }
@@ -183,21 +167,17 @@ layer { name: "crop4_3" type: "Crop" bottom: "upfeat4_3" bottom: "data"
   top: "feature_dsn4" crop_param { axis: 2 offset: 4 } }
 
 #######conv5 side output#######
-
 layer { name: "conv5_3_down" type: "Convolution" bottom: "conv5_3" top: "conv5_3_down"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
-  convolution_param { engine: CUDNN num_output: 256 kernel_size: 3  pad: 1
+  convolution_param { num_output: 256 kernel_size: 3  pad: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
 layer { name: "relu5_3_down" type: "ReLU" bottom: "conv5_3_down" top: "conv5_3_down" }
-
 layer { name: "conv5_3_refeat" type: "Convolution" bottom: "conv5_3_down" top: "conv5_3_refeat"
-  convolution_param { engine: CUDNN num_output: 128  kernel_size: 1
+  convolution_param { num_output: 128  kernel_size: 1
   weight_filler { type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
-
 layer { name: "conv5_3_norm" type: "Normalize" bottom: "conv5_3_refeat"  top: "conv5_3_norm"
   norm_param { across_spatial: false scale_filler { type: "constant" value: 20 }
   channel_shared: false } }
-
 layer { name: "upsample5_3" type: "Deconvolution" bottom: "conv5_3_norm" top: "upfeat5_3"
   param { lr_mult: 0 decay_mult: 1 } param { lr_mult: 0 decay_mult: 0 }
   convolution_param { num_output: 128 kernel_size: 16 stride: 8 } }
@@ -205,20 +185,14 @@ layer { name: "crop5_3" type: "Crop" bottom: "upfeat5_3" bottom: "data"
   top: "feature_dsn5" crop_param { axis: 2 offset: 4 } }
 
 #######concat multiscale feature layer#####
-#layer { name: "sum_up" type: "Eltwise" bottom: "conv1_2_norm"
-#  bottom: "feature_dsn2" bottom: "feature_dsn3" bottom: "feature_dsn4"
-#  bottom: "feature_dsn5" top: "feature" eltwise_param { operation: SUM } }
-
 layer { name: "concat" type: "Concat" bottom: "conv1_2_norm"
   bottom: "feature_dsn2" bottom: "feature_dsn3" bottom: "feature_dsn4"
   bottom: "feature_dsn5" top: "feature" concat_param { axis: 1 } }
-
 layer { name: "conv_dim" type: "Convolution" bottom: "feature" top: "conv_dim"
   param { lr_mult: 1 decay_mult: 1 } param { lr_mult: 2 decay_mult: 0 }
   convolution_param { num_output: 256 pad: 1 kernel_size: 3 weight_filler {
   type: "xavier" std: 0.01 } bias_filler { type: "constant" value: 0 } } }
 layer { name: "relu_dim" type: "ReLU" bottom: "conv_dim" top: "conv_dim" }
-
 layer { name: "conv_dsp" type: "Convolution" bottom: "conv_dim" top: "conv_dsp"
   param { lr_mult: 10 decay_mult: 1 } param { lr_mult: 20 decay_mult: 0 }
   convolution_param { num_output: 64 pad: 0 kernel_size: 1 weight_filler {
@@ -227,7 +201,6 @@ layer { name: "conv_dsp" type: "Convolution" bottom: "conv_dim" top: "conv_dsp"
 layer { name: "superpixel_pooling" type: "SuperpixelPooling" bottom: "conv_dsp"
   bottom: "seg_label" bottom: "sp_label" top: "superpixel_pooling_out"
   top: "superpixel_seg_label" superpixel_pooling_param { pool_type: AVE } }
-
 layer { name: "sim_loss" type: "SimilarityLoss" bottom: "superpixel_pooling_out"
   bottom: "superpixel_seg_label" bottom: "sp_label"  top: "sim_loss"
   loss_weight: 1 similarity_loss_param { sample_points: 1 } }
