@@ -119,7 +119,6 @@ __global__ void DissimilarityForward(const int nthreads,
 template <typename Dtype>
 void EgbSegmentLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
   const vector<Blob<Dtype>*>& top) {
-
     //clock_t start, finish;
     //start = clock();
 
@@ -132,13 +131,9 @@ void EgbSegmentLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
     const Dtype* sp_data = bottom[1]->cpu_data();
     bound = bottom[2]->cpu_data()[0];
     min_size = bottom[3]->cpu_data()[0];
-
     Dtype* top_data = top[0]->mutable_cpu_data();
-
     const Dtype* max_label = std::max_element(sp_data, sp_data+bottom[1]->count());
     const int numsp_ = static_cast<int>(*max_label) + 1;  //number of superpixel
-
-    //std::cout<< "num of superpixel = " << numsp_ << std::endl;
 
     vector<int> feature_shape(4, 1);
     feature_shape[2] = numsp_;
@@ -176,28 +171,6 @@ void EgbSegmentLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
       }
     }
 
-    /*caffe_gpu_set(numsp_*numsp_, Dtype(-1), bottom_data);
-    FindNeighborsForward<Dtype><<<CAFFE_GET_BLOCKS(height_*width_),
-        CAFFE_CUDA_NUM_THREADS>>>(height_*width_, gpu_sp_data, bottom_data,
-        numsp_, height_, width_);
-    Blob<Dtype> count(1, 1, 1, 1);
-    Dtype* pcount = count.mutable_gpu_data();
-    caffe_gpu_set(1, Dtype(0), pcount);
-    CountNumNeiborForward<Dtype><<<CAFFE_GET_BLOCKS(numsp_*numsp_),
-        CAFFE_CUDA_NUM_THREADS>>>(numsp_*numsp_, pcount, bottom_data);
-
-    const int num = count.mutable_cpu_data()[0];
-    vector<int> dis_shape(4, 1);
-    dis_shape[3] = num*3;
-    Blob<Dtype> distanse;
-    distanse.Reshape(dis_shape);
-
-    Dtype* weight = distanse.mutable_gpu_data();
-    caffe_gpu_set(1, Dtype(-1), pcount);
-    GetNeiborListForward<Dtype><<<CAFFE_GET_BLOCKS(numsp_*numsp_),
-        CAFFE_CUDA_NUM_THREADS>>>(numsp_*numsp_, pcount, bottom_data, weight,
-        numsp_);*/
-
     vector<int> dis_shape(4, 1);
     dis_shape[3] = num*3;
     Blob<Dtype> distanse;
@@ -218,7 +191,6 @@ void EgbSegmentLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
     DissimilarityForward<Dtype><<<CAFFE_GET_BLOCKS(num), CAFFE_CUDA_NUM_THREADS>>>(
         num, feature, weight, channels_);
     weight = distanse.mutable_cpu_data();
-
     // segment
     universe *u = segment_graph<Dtype>(numsp_, num, weight, bound);
 
@@ -239,7 +211,6 @@ void EgbSegmentLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
         top_data[y*width_ + x] = tables[static_cast<int>(sp_data[y*width_ + x])];
       }
     }
-
     delete u;
     delete [] tables;
 
@@ -252,7 +223,6 @@ void EgbSegmentLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& bottom,
   const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& top) {
   NOT_IMPLEMENTED;
 }
-
 
 INSTANTIATE_LAYER_GPU_FUNCS(EgbSegmentLayer);
 
