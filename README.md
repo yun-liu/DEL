@@ -11,7 +11,7 @@ If you are using the code/model/data provided here in a publication, please cons
     @conference{liu2018deep,
       title={DEL: Deep Embedding Learning for Efficient Image Segmentation},
       author={Yun Liu and Peng-Tao Jiang and Vahan Petrosyan and Shi-Jie Li and Jiawang Bian and Le Zhang and Ming-Ming Cheng},
-      booktitle={International Joint Conference on Artificial Intelligence (IJCAI)},
+      booktitle={International Joint Conference on Artificial Intelligence},
       pages={864--870},
       year={2018}
     }
@@ -19,7 +19,7 @@ If you are using the code/model/data provided here in a publication, please cons
     @inproceedings{cheng2016hfs,
       title={{HFS}: Hierarchical feature selection for efficient image segmentation},
       author={Cheng, Ming-Ming and Liu, Yun and Hou, Qibin and Bian, Jiawang and Torr, Philip and Hu, Shi-Min and Tu, Zhuowen},
-      booktitle={European Conference on Computer Vision (ECCV)},
+      booktitle={European Conference on Computer Vision},
       pages={867--882},
       year={2016},
       organization={Springer}
