@@ -9,7 +9,7 @@ Image segmentation has been explored for many years and still remains a crucial 
 If you are using the code/model/data provided here in a publication, please consider citing our paper:
 
     @conference{liu2018deep,
-      title={DEL: Deep Embedding Learning for Efficient Image Segmentation},
+      title={{DEL}: Deep Embedding Learning for Efficient Image Segmentation},
       author={Yun Liu and Peng-Tao Jiang and Vahan Petrosyan and Shi-Jie Li and Jiawang Bian and Le Zhang and Ming-Ming Cheng},
       booktitle={International Joint Conference on Artificial Intelligence},
       pages={864--870},
