@@ -25,6 +25,8 @@ If you are using the code/model/data provided here in a publication, please cons
       organization={Springer}
     }
     
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **We have released the code and data for plotting the edge PR curves of many existing image segmentation and edge detection methods [here](https://github.com/yun-liu/plot-edge-pr-curves).**
+    
 ### Pretrained models
 
 DEL models for BSDS500 dataset is available: [CPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehA30g1rtRGwMBCBe) and [GPU SLIC](https://1drv.ms/u/s!AtAJxn0z15QehA9KBDV6fXV3BHpw).
