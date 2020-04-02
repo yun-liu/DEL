@@ -1,4 +1,4 @@
-# [DEL: Deep Embedding Learning for Efficient Image Segmentation](https://mmcheng.net/del/)
+## [DEL: Deep Embedding Learning for Efficient Image Segmentation](https://mmcheng.net/del/)
 
 ### Introduction
 
