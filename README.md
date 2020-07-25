@@ -6,7 +6,7 @@ Image segmentation has been explored for many years and still remains a crucial 
 
 ### Citations
 
-If you are using the code/model/data provided here in a publication, please consider citing our paper:
+If you are using the code/model/data provided here in a publication, please consider citing:
 
     @conference{liu2018deep,
       title={{DEL}: Deep Embedding Learning for Efficient Image Segmentation},
