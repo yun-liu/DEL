@@ -2,6 +2,8 @@
 
 <img src="https://raw.githubusercontent.com/yun-liu/DEL/master/pipeline.png" width="1092">
 
+### We have released the code and data for plotting the edge PR curves of many existing image segmentation and edge detection methods [here](https://github.com/yun-liu/plot-edge-pr-curves).
+
 ### Introduction
 
 Image segmentation has been explored for many years and still remains a crucial vision problem. Some efficient or accurate segmentation algorithms have been widely used in many vision applications. However, it is difficult to design a both efficient and accurate image segmenter. In this paper, we propose a novel method called DEL (deep embedding learning) which can efficiently transform superpixels into image segmentation. Starting with the SLIC superpixels, we train a fully convolutional network to learn the feature embedding space for each superpixel. The learned feature embedding corresponds to a similarity measure that measures the similarity between two adjacent superpixels. With the deep similarities, we can directly merge the superpixels into large segments. The evaluation results on BSDS500 and PASCAL Context demonstrate that our approach achieves a good trade-off between efficiency and effectiveness. Specifically, our DEL algorithm can achieve comparable segments when compared with MCG but is much faster than it, _i.e._ 11.4fps _vs._ 0.07fps.
@@ -26,8 +28,6 @@ If you are using the code/model/data provided here in a publication, please cons
       year={2016},
       organization={Springer}
     }
-    
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+) **We have released the code and data for plotting the edge PR curves of many existing image segmentation and edge detection methods [here](https://github.com/yun-liu/plot-edge-pr-curves).**
     
 ### Pretrained models
 
