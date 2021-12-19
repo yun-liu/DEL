@@ -2,7 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/yun-liu/DEL/master/pipeline.png" width="1092">
 
-### We have released the code and data for plotting the edge PR curves of many existing image segmentation and edge detection methods [here](https://github.com/yun-liu/plot-edge-pr-curves).
+We have released the code and data for plotting the edge PR curves of many existing image segmentation and edge detection methods [here](https://github.com/yun-liu/plot-edge-pr-curves).
 
 ### Introduction
 
